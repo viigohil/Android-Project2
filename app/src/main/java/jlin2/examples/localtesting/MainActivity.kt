@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import java.util.Calendar
 
@@ -39,20 +41,31 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Shortcuts to input fields.
+        val editTextUserInput = findViewById<EditText>(R.id.userNameInput)
+        val changeTextButton = findViewById<Button>(R.id.changeTextBt)
+        val openActivityButton = findViewById<Button>(R.id.activityChangeTextBtn)
+        val textViewToChange = findViewById<TextView>(R.id.textToBeChanged)
+
+        // Set up the click listener to change text
+        changeTextButton.setOnClickListener {
+            textViewToChange.text = "123"
+        }
+
+        // Shortcuts to input fields
         nameText = findViewById(R.id.userNameInput)
         dobPicker = findViewById(R.id.dateOfBirthInput)
         emailText = findViewById(R.id.emailInput)
 
-        // Setup email field validator.
+        // Setup email field validator
         emailText.addTextChangedListener(emailValidator)
 
-        // Instantiate a SharedPreferencesHelper.
+        // Instantiate a SharedPreferencesHelper
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedPreferencesHelper = SharedPreferencesHelper(sharedPreferences)
 
-        // Fill input fields from data retrieved from the SharedPreferences.
+        // Fill input fields from data retrieved from the SharedPreferences
         populateUi()
+
     }
 
     /**
@@ -77,6 +90,8 @@ class MainActivity : Activity() {
             Log.w(TAG, "Not saving personal information: Invalid email")
             return
         }
+
+
 
         // Get the text from the input fields.
         val name = nameText.text.toString()

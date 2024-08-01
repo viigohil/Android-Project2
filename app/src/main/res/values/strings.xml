@@ -8,4 +8,6 @@
     <string name="revert">Revert</string>
     <string name="name_hint">Enter your name</string>
     <string name="email_hint">Enter your Email</string>
+    <string name="change_text">Change Text</string>
+    <string name="open_activity">Open Activity</string>
 </resources>
