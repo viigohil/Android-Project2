@@ -20,5 +20,5 @@ class EmailValidatorTest {
     @Test
     fun testInvalidEmailIncorrectDomain(){
         assertFalse(EmailValidator.isValidEmail("123@abc"))
-    }
+      }
 }
