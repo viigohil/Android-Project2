@@ -26,4 +26,11 @@ class EmailValidatorTest {
     fun testInvalidEmailDoubleDots() {
         assertFalse(EmailValidator.isValidEmail("123@abc..com"))
     }
+
+    @Test
+    fun testInvalidEmailWithoutUsername() {
+        assertFalse(EmailValidator.isValidEmail("@abc.com"))
+    }
+
+
 }
