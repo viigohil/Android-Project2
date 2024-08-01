@@ -1,6 +1,7 @@
 package jlin2.examples.localtesting
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -48,7 +49,14 @@ class MainActivity : Activity() {
 
         // Set up the click listener to change text
         changeTextButton.setOnClickListener {
-            textViewToChange.text = "123"
+            val inputText = findViewById<EditText>(R.id.userNameInput).text.toString()
+            findViewById<TextView>(R.id.textToBeChanged).text = inputText
+        }
+        openActivityButton.setOnClickListener {
+            val inputText = findViewById<EditText>(R.id.userNameInput).text.toString()
+            val intent = Intent(this, ShowTextActivity::class.java)
+            intent.putExtra("input_text", inputText)
+            startActivity(intent)
         }
 
         // Shortcuts to input fields
@@ -66,7 +74,11 @@ class MainActivity : Activity() {
         // Fill input fields from data retrieved from the SharedPreferences
         populateUi()
 
+
+
     }
+
+
 
     /**
      * Initialize all fields from the personal info saved in the SharedPreferences.
